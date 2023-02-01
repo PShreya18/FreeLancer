@@ -44,6 +44,10 @@ urlpatterns = [
     path("add_projects/", add_projects, name="add_projects"),
     path("view_projects/", view_projects, name="view_projects"),
     #path("filter_projects/<int:myid>/", filter_projects, name="filter_projects")
+
+    #Course Recommendation
+    path('courses/',course),
+    path('courses/recommend_course/', recommend_course)
 ]
 '''
     path('join/profile/',login_user),
