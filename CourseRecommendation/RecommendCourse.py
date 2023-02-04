@@ -18,7 +18,7 @@ df['clean_course_title'] = df['clean_course_title'].apply(nfx.remove_special_cha
 count_vect = CountVectorizer()
 cv_mat = count_vect.fit_transform(df['clean_course_title'])
 
-df_cv_words = pd.DataFrame(cv_mat.todense(), columns=count_vect.get_feature_names())
+df_cv_words = pd.DataFrame(cv_mat.todense(), columns=count_vect.get_feature_names_out())
 
 # Cosine Similarity Matrix
 cosine_sim_mat = cosine_similarity(cv_mat)
