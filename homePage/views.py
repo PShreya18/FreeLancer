@@ -85,9 +85,9 @@ def job_apply(request, myid):
     if job.end_date < date1:
         closed=True
         return render(request, "job_apply.html", {'closed':closed})
-    elif job.start_date > date1:
+        '''elif job.start_date > date1:
         notopen=True
-        return render(request, "job_apply.html", {'notopen':notopen})
+        return render(request, "job_apply.html", {'notopen':notopen})'''
     else:
         if request.method == "POST":
             resume = request.FILES['resume']
@@ -96,6 +96,15 @@ def job_apply(request, myid):
             return render(request, "job_apply.html", {'alert':alert})
     return render(request, "job_apply.html", {'job':job})
 
+
+def show_resume(request):
+    #return render(request,"homePage/static/P.Shreya_CV.docx")
+    file_path = 'homePage/static/P.Shreya_CV.docx'
+    with open(file_path, 'rb') as doc:
+        response = HttpResponse(doc.read(), content_type='application/ms-word')
+        # response = HttpResponse(template_output)
+        response['Content-Disposition'] = 'attachment;filename=P.Shreya_CV.docx'
+        return response
 
 def all_applicants(request):
     company = Hirer.objects.get(user=request.user)
@@ -222,6 +231,10 @@ def job_list(request):
     jobs = Job.objects.filter(company=companies)
     return render(request, "job_list.html", {'jobs':jobs})
 
+def delete_job(request,myid):
+    job = Job.objects.get(id=myid)
+    job.delete()
+    return render(request,"job_list.html")
 
 def Logout(request):
     logout(request)
@@ -256,6 +269,8 @@ def add_projects(request):
 def view_projects(request):
     projects = Project.objects.all()
     return render(request, "all_projects.html", {'projects': projects})
+
+
 
 '''
 def filter_projects(request,domain):

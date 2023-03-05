@@ -9,13 +9,19 @@
         #gradient{
             background:linear-gradient(108.08deg,#96C5CC 0.53%,#E5F1F2 52.86%);
         }
+        #image{
+            transition:transform 2s;
+        }
+        #image:hover{
+            transform:rotateY(180deg);
+        }
     </style>
 </head>
 <body id="gradient">
 <header>
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-      <a class="navbar-brand mx-2" href="#"><img width="45px" height="45px" style="border-radius:20px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-vqVGqnxK0uhf_mYg_XzGCWLRWA81_s_O3g&usqp=CAU"/><b> FreeLancer</b></a>
+      <a class="navbar-brand mx-2" href="/"><img width="45px" height="45px" style="border-radius:20px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-vqVGqnxK0uhf_mYg_XzGCWLRWA81_s_O3g&usqp=CAU"/><b> FreeLancer</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,7 +31,9 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">About</a>
+          <a class="nav-link active" id="about" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" href="/">
+              About
+          </a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,12 +64,18 @@
     </div>
   </div>
 </nav>
-
+<div class="collapse" id="collapseExample" style="transition:height 0.05s;">
+  <div class="card card-body" style="height:30%;width:50%;margin:0 50px 0 50px;transition-timing-function: ease-in-out;">
+      We are a platform connecting Freelancers and Hirers by creating various opportunities.
+      <span style="color:#D79C9B;margin:0 50px 0 50px;" class="fs-3">Start your journey!</span>
+  </div>
+</div>
+    <br>
 </header>
 <main id="gradient">
-    <div class="container-fluid">
+    <div class="container-fluid" id="header1">
         <div class="row">
-            <div class="col-7"><img  class=" img-fluid rounded-circle shadow-lg" width="100%" height="auto" src="https://img.freepik.com/free-vector/it-specialist-composition-with-flat-view-hipster-programmers-workplace-icons-cycle-representing-work-pipeline-vector-illustration_1284-74335.jpg?size=626&ext=jpg&ga=GA1.2.1464604187.1656775548"/></div>
+            <div class="col-7"><img  id="image" class=" img-fluid rounded-circle shadow-lg" width="100%" height="auto" src="https://img.freepik.com/free-vector/it-specialist-composition-with-flat-view-hipster-programmers-workplace-icons-cycle-representing-work-pipeline-vector-illustration_1284-74335.jpg?size=626&ext=jpg&ga=GA1.2.1464604187.1656775548"/></div>
             <div class="col-5 my-5">
                 <b>
                     <div style="color:#D79C9B">
@@ -202,7 +216,7 @@
 <footer class="bd-footer">
   <div class="container px-5" >
     <div class="row align-items-center gx-5">
-        <div class="col-4 fs-4 ">
+        <div class="col-6 fs-4 ">
             For Freelancers
             <div>
                 <ul class="fs-5" style="list-style-type:None">
@@ -211,7 +225,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-4 fs-4 ">
+        <div class="col-6 fs-4 ">
             For Hirers
             <div>
                 <ul class="fs-5" style="list-style-type:None">
@@ -219,7 +233,7 @@
                     <li><a href="view_projects/" style="text-decoration:None;color:black;">Project Catalog</a></li>
                 </ul>
             </div>
-        </div>
+        </div><!--
         <div class="col-4 fs-4 ">
             Us
             <div>
@@ -228,7 +242,7 @@
                     <li>Contact us</li>
                 </ul>
             </div>
-        </div>
+        </div>-->
     </div>
   </div>
 </footer>

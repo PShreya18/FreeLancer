@@ -23,6 +23,7 @@ urlpatterns = [
     path('',home),
     path("view_freelancers/", view_freelancers, name="view_freelancers"),
     path("view_hirers/", view_hirers, name="view_hirers"),
+
     #Freelancer
     path("freelancer_login/", freelancer_login, name="freelancer_login"),
     path("signup/", signup, name="signup"),
@@ -39,6 +40,8 @@ urlpatterns = [
     path("add_job/", add_job, name="add_job"),
     path("job_list/", job_list, name="job_list"),
     path("all_applicants/", all_applicants, name="all_applicants"),
+    path("delete_job/<int:myid>/", delete_job, name="delete_job"),
+    path("all_applicants/resume/", show_resume , name="show_resume"),
 
     #Projects
     path("add_projects/", add_projects, name="add_projects"),
