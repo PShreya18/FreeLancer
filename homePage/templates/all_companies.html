@@ -20,7 +20,7 @@
             <th>Full Name</th>
             <th>Email Id</th>
             <th>Contact</th>
-            <th>Gender</th>
+            <!--<th>Gender</th>-->
             <th>Company Name</th>
         </tr>
     </thead>
@@ -31,11 +31,11 @@
             <td>{{company.user.username}}</td>
             <td>{{company.user.email}}</td>
             <td>{{company.phone}}</td>
-            {% if company.gender %}
+            <!--{% if company.gender %}
             <td>Male</td>
             {% else %}
             <td>Female</td>
-            {% endif %}
+            {% endif %}-->
             <td>{{company.company_name}}</td>
         </tr>
         {% endfor %}

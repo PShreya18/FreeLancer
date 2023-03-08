@@ -12,7 +12,7 @@
     </style>
 </head>
 <body id="gradient">
-<div class="container mt-4">
+<!--<div class="container mt-4">
 <table class="table table-hover" id="example">
     <thead>
         <tr>
@@ -37,7 +37,23 @@
         {% endfor %}
     </tbody>
 </table>
+</div>-->
+<div class="container" style="margin:50px 0px 0 100px;">
+  <div class="row row-cols-3">
+      {% for i in projects %}
+    <div class="col-4">
+        <div class="card mb-3 shadow  bg-body rounded" style="width:23rem;height:18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{i.title}} - {{i.domain}}</h5>
+                <h6 class="card-subtitle">By {{i.creator}}</h6>
+                <p class="card-text">{{i.description}}<br><b>Rs{{i.price}}</b></p>
+                <a href="{{i.demo}}" style="text-decoration:None;color:black;">Demo Link</a><br>
+                <a href="{{i.repo}}" style="text-decoration:None;color:black;">Repository Link</a>
+            </div>
+        </div>
+    </div>
+      {% endfor %}
+  </div>
 </div>
-
 </body>
 </html>

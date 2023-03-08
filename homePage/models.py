@@ -77,6 +77,8 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     domain = models.CharField(max_length=50)
     price = models.IntegerField()
+    demo = models.URLField(max_length=200)
+    repo = models.URLField(max_length=200)
     description = models.TextField(max_length=400)
 
     def __str__(self):

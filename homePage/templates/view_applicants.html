@@ -20,7 +20,7 @@
             <th>Name</th>
             <th>Email Id</th>
             <th>Contact</th>
-            <th>Gender</th>
+            <!--<th>Gender</th>-->
         </tr>
     </thead>
     <tbody>
@@ -30,11 +30,11 @@
             <td>{{applicant.user.username}}</td>
             <td>{{applicant.user.email}}</td>
             <td>{{applicant.phone}}</td>
-            {% if applicant.gender %}
+            <!--{% if applicant.gender %}
             <td>Male</td>
             {% else %}
             <td>Female</td>
-            {% endif %}
+            {% endif %}-->
         </tr>
         {% endfor %}
     </tbody>

@@ -255,11 +255,13 @@ def add_projects(request):
         title = request.POST['project_title']
         domain = request.POST['domain']
         price = request.POST['price']
+        demo = request.POST['demo']
+        repo = request.POST['repo']
         description = request.POST['description']
         user = request.user
         creator = user
         freelancer = Freelancer.objects.get(user=user)
-        project = Project.objects.create(creator=freelancer, title=title,description=description, domain=domain, price = price)
+        project = Project.objects.create(creator=freelancer, title=title,description=description, domain=domain, price = price,demo=demo,repo=repo)
         project.save()
         print(project)
         return render(request, "add_projects.html")
