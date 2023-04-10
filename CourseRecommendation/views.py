@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from IPython.display import  HTML
 from CourseRecommendation.RecommendCourse import course_indices,cosine_sim_mat,df,pd
-
+from homePage.models import Freelancer
 
 def course(request):
     return render(request, 'courses.html')
@@ -10,9 +10,18 @@ def course(request):
 
 def recommend_course(request):
     try:
-        title = request.POST['course']
-        num_of_rec = int(request.POST['rec_no'])
-        print(title,num_of_rec)
+        if not request.POST['course']:
+            #print(getattr(Freelancer, 'skills'), Freelancer.objects.get(id=3).skills)
+            skill = str(Freelancer.objects.get(id=3).skills)
+            skill = skill.split(',')[0]
+            title = skill
+            print(title)
+            num_of_rec = 5
+        else:
+            title = request.POST['course']
+            num_of_rec = int(request.POST['rec_no'])
+            print(title,num_of_rec,Freelancer.skills)
+
     # ID for title
         idx = course_indices[str(title)]
     # Course Indice

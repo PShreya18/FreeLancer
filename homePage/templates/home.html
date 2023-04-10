@@ -15,6 +15,10 @@
         #image:hover{
             transform:rotateY(180deg);
         }
+        a{
+            text-decoration:None;
+            color:black;
+        }
     </style>
 </head>
 <body id="gradient">
@@ -48,18 +52,22 @@
               <a class="nav-link active" href="view_projects/">Find Projects</a>
           </li>
       </ul>
-      <form class="d-flex">
+      <!--<form class="d-flex">
         <input class="shadow bg-body rounded form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn text-white" type="submit" style="background:#D79C9B;">Search</button>
-      </form>
+      </form>-->
         <div class="dropdown">
-            <button class="btn text-white" style="background:#D79C9B;margin:5px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            {% if request.user.is_authenticated%}
+            <button class="btn text-white" style="background:#D79C9B;margin:20px;"><a href="/logout/" style="text-decoration:none;color:white;"><b>Logout</b></a></button><br><br>
+            {% else %}
+            <button class="btn text-white" style="background:#D79C9B;margin:20px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <span style="text-decoration:None;color:white;">Join us</span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="/freelancer_login/">As Freelancer</a></li>
                 <li><a class="dropdown-item" href="/company_login/">As Hirer</a></li>
             </ul>
+            {% endif %}
         </div>
     </div>
   </div>
@@ -101,62 +109,28 @@
                         <div class="col">
                             <div class="card border-dark mb-3" style="width:18rem;" >
                                 <div class="card-body text-dark">
-                                    <h3 class="card-title">Machine Learning</h3>
+                                    <h3 class="card-title"><a href="/filter_projects/1/">Machine Learning</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-dark mb-3" style="width:18rem;" >
+                                <div class="card-body text-dark">
+                                    <h3 class="card-title"><a href="/filter_projects/2/">Web Development</a></h3>
                                     </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card border-dark mb-3" style="width:18rem;" >
                                 <div class="card-body text-dark">
-                                        <h3 class="card-title">Web Development</h3>
+                                    <h3 class="card-title"><a href="/filter_projects/3/">Internet of Things</a></h3>
                                     </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card border-dark mb-3" style="width:18rem;" >
                                 <div class="card-body text-dark">
-                                        <h3 class="card-title">Internet of Things</h3>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card border-dark mb-3" style="width:18rem;" >
-                                <div class="card-body text-dark">
-                                        <h3 class="card-title">BlockChain</h3>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row row-cols-2">
-                        <div class="col">
-                            <div class="card border-dark mb-3" style="width:18rem;" >
-                                <div class="card-body text-dark">
-                                        <h3 class="card-title">Data Science</h3>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card border-dark mb-3" style="width:18rem;" >
-                                <div class="card-body text-dark">
-                                        <h3 class="card-title">Android Projects</h3>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card border-dark mb-3" style="width:18rem;" >
-                                <div class="card-body text-dark">
-                                        <h3 class="card-title">NLP based Projects</h3>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card border-dark mb-3" style="width:18rem;" >
-                                <div class="card-body text-dark">
-                                        <h3 class="card-title">Cybersecurity</h3>
+                                    <h3 class="card-title"><a href="/filter_projects/4/">BlockChain</a></h3>
                                     </div>
                             </div>
                         </div>
@@ -169,28 +143,62 @@
                         <div class="col">
                             <div class="card border-dark mb-3" style="width:18rem;" >
                                 <div class="card-body text-dark">
-                                        <h3 class="card-title">PHP Projects</h3>
+                                    <h3 class="card-title"><a href="/filter_projects/5/">Data Science</a></h3>
                                     </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card border-dark mb-3" style="width:18rem;" >
                                 <div class="card-body text-dark">
-                                        <h3 class="card-title">Python Projects</h3>
+                                    <h3 class="card-title"><a href="/filter_projects/6/">Android Projects</a></h3>
                                     </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card border-dark mb-3" style="width:18rem;" >
                                 <div class="card-body text-dark">
-                                        <h3 class="card-title">C/C++ Projects</h3>
+                                    <h3 class="card-title"><a href="/filter_projects/7/">NLP</a></h3>
                                     </div>
                             </div>
                         </div>
                         <div class="col">
                             <div class="card border-dark mb-3" style="width:18rem;" >
                                 <div class="card-body text-dark">
-                                        <h3 class="card-title">Java Projects</h3>
+                                    <h3 class="card-title"><a href="/filter_projects/8/">Cybersecurity</a></h3>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row row-cols-2">
+                        <div class="col">
+                            <div class="card border-dark mb-3" style="width:18rem;" >
+                                <div class="card-body text-dark">
+                                    <h3 class="card-title"><a href="/filter_projects/9/">PHP</a></h3>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-dark mb-3" style="width:18rem;" >
+                                <div class="card-body text-dark">
+                                    <h3 class="card-title"><a href="/filter_projects/10/">Python</a></h3>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-dark mb-3" style="width:18rem;" >
+                                <div class="card-body text-dark">
+                                    <h3 class="card-title"><a href="/filter_projects/11/">C/C++</a></h3>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-dark mb-3" style="width:18rem;" >
+                                <div class="card-body text-dark">
+                                    <h3 class="card-title"><a href="/filter_projects/12/">Java</a></h3>
                                     </div>
                             </div>
                         </div>

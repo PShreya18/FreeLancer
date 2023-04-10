@@ -9,6 +9,10 @@
         #gradient{
             background:linear-gradient(108.08deg,#96C5CC 0.53%,#E5F1F2 52.86%);
         }
+        a{
+            text-decoration:None;
+            color:white;
+        }
     </style>
 </head>
 <body id="gradient">
@@ -47,8 +51,14 @@
                 <h5 class="card-title">{{i.title}} - {{i.domain}}</h5>
                 <h6 class="card-subtitle">By {{i.creator}}</h6>
                 <p class="card-text">{{i.description}}<br><b>Rs{{i.price}}</b></p>
-                <a href="{{i.demo}}" style="text-decoration:None;color:black;">Demo Link</a><br>
-                <a href="{{i.repo}}" style="text-decoration:None;color:black;">Repository Link</a>
+                <a href="{{i.demo}}" style="text-decoration:None;color:black;" >Demo Link</a><br>
+                &nbsp;&nbsp;
+                {% if i.price %}
+                <a href="/buy/{{i.creator}}/{{i.price}}/" style="text-decoration:None;color:black;" >Repository Link</a>
+                <buttom class="btn text-white" style="background:#D79C9B;"><a href="/buy/{{i.creator}}/{{i.price}}/">Buy</a></buttom>
+                {% else %}
+                <a href="{{i.repo}}" style="text-decoration:None;color:black;" >Repository Link</a>
+                {% endif %}
             </div>
         </div>
     </div>

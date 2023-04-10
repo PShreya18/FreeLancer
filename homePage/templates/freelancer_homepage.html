@@ -7,9 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <style>
-        .checked {
+        /*.checked {
           color: orange;
-        }
+        }*/
         #gradient{
             background:linear-gradient(108.08deg,#96C5CC 0.53%,#E5F1F2 52.86%,#D79C9B 100%);
         }
@@ -23,29 +23,29 @@
             font-weight: 500px;
 
         }
-        .fa {
+        /*.fa {
             padding: 20px;
             font-size: 30px;
             width: 53px;
             height: 55px;
             text-align: center;
             text-decoration: none;
-        }
+        }*/
 
-        /* Add a hover effect if you want */
+        /* Add a hover effect if you want
         .fa:hover {
             opacity: 0.7;
         }
 
-        /* Set a specific color for each brand */
+        Set a specific color for each brand
 
-        /* Facebook */
+        Facebook
         .fa-facebook {
             background: #3B5998;
             color: white;
         }
 
-        /* Twitter */
+        Twitter
         .fa-twitter {
             background: #55ACEE;
             color: white;
@@ -53,7 +53,7 @@
         .fa-linkedin {
             background: #3B5999;
             color: white;
-        }
+        }*/
         </style>
 </head>
 <body align="center" style="margin:50px;">
@@ -63,12 +63,12 @@
                 <img class="img rounded" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSydOsHyL_1gOOkKdXu7iKj6lVX2_miLgYN4A&usqp=CAU">
                 <br>
                 <br>
-                <button class="btn text-white fs-4" style="background:#D79C9B;"><a href="/logout/" style="text-decoration:none;color:white;"><b>Logout</b></a></button>
+                <button class="btn text-white fs-4" style="background:#D79C9B;"><a href="/logout/" style="text-decoration:none;color:white;"><b>Logout</b></a></button><br><br>
                 <button class="btn text-white fs-4" style="background:#D79C9B;"><a href="/all_jobs/" style="text-decoration:none;color:white;"><b>Job List</b></a></button><br><br>
-                <button class="btn text-white fs-4" style="background:#D79C9B;"><a href="/add_projects/" style="text-decoration:none;color:white;"><b>Add Projects</b></a></button>
+                <button class="btn text-white fs-4" style="background:#D79C9B;"><a href="/add_projects/" style="text-decoration:none;color:white;"><b>Add Projects</b></a></button><br><br>
                 <button class="btn text-white fs-4" style="background:#D79C9B;"><a href="/courses/" style="text-decoration:none;color:white;"><b>Find Courses</b></a></button>
                 <br><br><br>
-                <span  style="color:#D79C9B"><h4><b>Reputation</b></h4></span>
+                <!--<span  style="color:#D79C9B"><h4><b>Reputation</b></h4></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
@@ -78,7 +78,7 @@
                 <h4 style="color:#D79C9B">Connect</h4>
                 <a href="#" class="fa fa-facebook"></a>
                 <a href="#" class="fa fa-twitter"></a>
-                <a href="#" class="fa fa-linkedin"></a>
+                <a href="#" class="fa fa-linkedin"></a>-->
             </div>
             <div class="col-8">
                 <h1 style="color:#D79C9B;"><b>{{ applicant.user.username }}</b></h1>
@@ -87,14 +87,10 @@
                 <br>
                 <span class="fs-4">My passion for coding and web development experience is ready to get your next app up and running quickly and without bugs.</span>
                 <br><br>
-                <h4 style="color:#D79C9B"><b>Abilities:</b></h4>
+                <!---<h4 style="color:#D79C9B"><b>Coins:</b></h4>
                 <span class="fs-4">
-                    - Actualizing vision for the next application, on time<br>
-                    - Writing code for iOS and Android app in Swift,Objective C,Python, or Java<br>
-                    - Designing intuitive UI/UX that engages users<br>
-                    - Writing reliable user authentication processes<br>
-                    - Troubleshooting bugs in cross-platform apps
-                </span>
+                    {{applicant.coins}}
+                </span>-->
                 <br><br>
                 <h4 style="color:#D79C9B"><b>Skills:</b></h4>
                 <span class="fs-4">

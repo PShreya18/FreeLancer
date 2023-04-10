@@ -46,7 +46,10 @@ urlpatterns = [
     #Projects
     path("add_projects/", add_projects, name="add_projects"),
     path("view_projects/", view_projects, name="view_projects"),
-    #path("filter_projects/<int:myid>/", filter_projects, name="filter_projects")
+    path("filter_projects/<int:domain>/", filter_projects, name="filter_projects"),
+    path("buy/<str:seller>/<int:price>/", buy_project , name="buy_project"),
+    #path("filter_projects/view_projects/buy/<int:price>/", buy_project , name="buy_project"),
+    path('paymenthandler/', paymenthandler, name='paymenthandler'),
 
     #Course Recommendation
     path('courses/',course),

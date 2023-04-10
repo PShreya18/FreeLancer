@@ -2,12 +2,19 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.core.checks import messages
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.contrib import messages
 # Create your views here.
 from django.urls import reverse
 from datetime import date
 from .models import *
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+import razorpay
 
+# authorize razorpay client with API Keys.
+razorpay_client = razorpay.Client(
+    auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
 
 def home(request):
     return render(request, 'home.html')
@@ -273,13 +280,101 @@ def view_projects(request):
     return render(request, "all_projects.html", {'projects': projects})
 
 
-
-'''
 def filter_projects(request,domain):
-    id=domain
-    projects = Project.objects.get(domain="Machine Learning")
+    pid = int(domain)
+    project_map={1:"Machine Learning",2:"Web Development",3:"Internet of Things",4:"Blockchain",5:"Data Science",6:"Android",7:"NLP",8:"Cybersecurity",9:"PHP",10:"Python",11:"C",12:"Java"}
+    projects = Project.objects.filter(domain=project_map[pid])
+    if not projects:
+        return HttpResponse("No projects found!")
     return render(request,"all_projects.html",{'projects':projects})
 
+
+def buy_project(request,seller,price):
+    if not request.user.is_authenticated:
+        return redirect("/freelancer_login")
+    #buyer = request.user
+    #buyer = Freelancer.objects.get(user=buyer)
+    #print(buyer,buyer.coins,Freelancer.coins,Freelancer.objects.all().values())
+    currency = 'INR'
+    amount = int(price)*100
+    #bcoins = buyer.coins*100
+    #if bcoins >= amount:
+     #   seller = Freelancer.objects.get(id=2)
+      #  print(seller,seller.coins)
+       # buyer.coins -= amount//100
+       # seller.coins += amount//100
+       # print(buyer,buyer.coins,seller,seller.coins,Freelancer.objects.get(name=buyer),User.objects.get(freelancer=buyer))
+        #buyer = request.user
+        #return render(request,'all_projects.html')
+    #else:
+        # Create a Razorpay Order
+    razorpay_order = razorpay_client.order.create(dict(amount=amount,currency=currency,payment_capture='0'))
+ 
+    # order id of newly created order.
+    razorpay_order_id = razorpay_order['id']
+    callback_url = 'paymenthandler/'
+ 
+    # we need to pass these details to frontend.
+    context = {}
+    context['razorpay_order_id'] = razorpay_order_id
+    context['razorpay_merchant_key'] = settings.RAZOR_KEY_ID
+    context['razorpay_amount'] = amount
+    context['currency'] = currency
+    context['callback_url'] = callback_url
+    print(context)
+    return render(request, 'buy.html', context=context)
+
+
+# we need to csrf_exempt this url as
+# POST request will be made by Razorpay
+# and it won't have the csrf token.
+@csrf_exempt
+def paymenthandler(request):
+ 
+    # only accept POST request.
+    if request.method == "POST":
+        try:
+           
+            # get the required parameters from post request.
+            payment_id = request.POST.get('razorpay_payment_id', '')
+            #amount = request.POST.get('razorpay_amount', '')
+            razorpay_order_id = request.POST.get('razorpay_order_id', '')
+            signature = request.POST.get('razorpay_signature', '')
+            params_dict = {
+                'razorpay_order_id': razorpay_order_id,
+                'razorpay_payment_id': payment_id,
+                'razorpay_signature': signature
+            }
+            print(params_dict)
+            # verify the payment signature.
+            result = razorpay_client.utility.verify_payment_signature(params_dict)
+            print(result)
+            if result is not None:
+                amount = int(10)*100
+                try:
+ 
+                    # capture the payemt
+                    razorpay_client.payment.capture(payment_id, amount)
+ 
+                    # render success page on successful caputre of payment
+                    return render(request,'paymentsuccess.html')
+                except:
+ 
+                    # if there is an error while capturing payment.
+                    return render(request, 'paymentfailed.html')
+            else:
+ 
+                # if signature verification fails.
+                return render(request, 'paymentfailed.html')
+        except:
+ 
+            # if we don't find the required parameters in POST data
+            return HttpResponseBadRequest()
+    else:
+       # if other than POST request is made.
+        return HttpResponseBadRequest()
+        
+'''  
 def port(request):
     return render(request, 'FreelancerPortfolio.html')
 
